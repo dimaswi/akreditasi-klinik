@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="input-group hdtuto control-group lst increment">
-                                        <input type="file" name="filenames[]" accept="application/pdf" class="myfrm form-control">
+                                        <input type="file" name="filenames[]" accept="application/pdf" class="myfrm form-control" >
                                         <div class="input-group-btn">
                                             <button class="btn btn-success tambah_file" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
                                         </div>

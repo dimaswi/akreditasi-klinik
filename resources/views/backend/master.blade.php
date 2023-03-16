@@ -97,7 +97,7 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <strong>Tambah Standart</strong>
+                <strong>Tambah Elemen Penilaian</strong>
             </div><!--card-header-->
             <form action="{{ route('admin.simpanElemen') }}" method="post">
                 @csrf
