@@ -10,13 +10,6 @@
                 <strong>
                     <i class="fas fa-tachometer-alt"></i> @lang('navs.frontend.dashboard')
                 </strong>
-                <span class="float-right">
-                    @can('view backend')
-                    <a href="{{ route('admin.dashboard')}}" class="btn btn-danger btn-lg">
-                        <i class="fas fa-user-secret"></i> Admin
-                    </a>
-                    @endcan
-                </span>
             </div><!--card-header-->
 
             <div class="card-body">
@@ -36,6 +29,14 @@
                                         <i class="fas fa-calendar-check"></i> @lang('strings.frontend.general.joined') {{ timezone()->convertToLocal($logged_in_user->created_at, 'F jS, Y') }}
                                     </small>
                                 </p>
+
+                                <h1>
+                                    @can('view backend')
+                                        <a href="{{ route('admin.dashboard')}}" class="btn btn-danger btn-sm mb-1">
+                                            <i class="fas fa-user-secret"></i> Dashboard
+                                        </a>
+                                    @endcan
+                                </h1>
                             </div>
                         </div>
 

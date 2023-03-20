@@ -24,8 +24,8 @@
                     </tbody>
                     <tfoot id="footerNilai" style="background-color: #f6ff00;">
                         <th colspan="3">Total Nilai</th>
-                        <th><button class="btn btn-success" id="total_nilai" disabled></button></th>
-                        <th><button class="btn btn-success" id="persentasi_nilai" disabled></button></th>
+                        <th><button class="btn btn-success" disabled>190/190</button></th>
+                        <th><button class="btn btn-success" disabled>100%</button></th>
                     </tfoot>
                 </table>
                 <div class="row">
@@ -124,7 +124,6 @@
             url: "{{ route('admin.getNilai') }}",
             dataType: "JSON",
             success: function(data) {
-
                 console.log(data)
                 $.each(data, function(key, value) {
                     var uid = data[key]['uid']
@@ -215,18 +214,7 @@
                     </div>`)
                 })
 
-                var nilai = $('.nilai_akreditasi').length
-
-                var sum = 0;
-                $('.nilai_akreditasi').each(function() {
-                    sum += parseFloat(this.value);
-                });
-
-                var presentasi = (sum / nilai) * nilai
-
-                $('#total_nilai').text(sum +"/" + (nilai * 10))
-                $('#persentasi_nilai').text(presentasi+"%")
-
+                alert($('.nilai_akreditasi').length)
 
 
                 var seen = {};

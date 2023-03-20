@@ -216,16 +216,17 @@
                 })
 
                 var nilai = $('.nilai_akreditasi').length
+                alert(nilai)
 
                 var sum = 0;
                 $('.nilai_akreditasi').each(function() {
                     sum += parseFloat(this.value);
                 });
 
-                var presentasi = (sum / nilai) * nilai
+                var presentasi = (sum + nilai) * nilai
 
                 $('#total_nilai').text(sum +"/" + (nilai * 10))
-                $('#persentasi_nilai').text(presentasi+"%")
+                $('#presentasi_nilai').text(presentasi+"%")
 
 
 

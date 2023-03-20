@@ -24,8 +24,8 @@
                     </tbody>
                     <tfoot id="footerNilai" style="background-color: #f6ff00;">
                         <th colspan="3">Total Nilai</th>
-                        <th><button class="btn btn-success" id="total_nilai" disabled></button></th>
-                        <th><button class="btn btn-success" id="persentasi_nilai" disabled></button></th>
+                        <th><button class="btn btn-success" disabled>190/190</button></th>
+                        <th><button class="btn btn-success" disabled>100%</button></th>
                     </tfoot>
                 </table>
                 <div class="row">
@@ -97,11 +97,11 @@
 
 
                     $('#' + uid).append(`
-                    <div class="tab-pane fade show ` + key + `" id="list-home_` + key + `" role="tabpanel" aria-labelledby="list-home-list"><iframe src="{{ url('files/` + namafile + `') }}" align="top" height="620" width="100%" frameborder="0" scrolling="auto"></iframe></div>
+                    <div class="tab-pane fade show `+key+`" id="list-home_` + key + `" role="tabpanel" aria-labelledby="list-home-list"><iframe src="{{ url('files/` + namafile + `') }}" align="top" height="620" width="100%" frameborder="0" scrolling="auto"></iframe></div>
                     
                     `)
                     $('#judul_' + uid).append(`
-                    <a class="list-group-item list-group-item-action judul_` + key + `" id="list-home-list" data-toggle="list" href="#list-home_` + key + `" role="tab" aria-controls="home">` + data[key]['jenis_dokumen'] + ` - ` + data[key]['filenames'] + `</a>
+                    <a class="list-group-item list-group-item-action judul_`+key+`" id="list-home-list" data-toggle="list" href="#list-home_` + key + `" role="tab" aria-controls="home">` + data[key]['jenis_dokumen'] + ` - ` + data[key]['filenames'] + `</a>
                     `)
                 })
 
@@ -124,7 +124,6 @@
             url: "{{ route('admin.getNilai') }}",
             dataType: "JSON",
             success: function(data) {
-
                 console.log(data)
                 $.each(data, function(key, value) {
                     var uid = data[key]['uid']
@@ -141,7 +140,7 @@
                     <td><strong>` + data[key]['bab'] + `</strong></td>
                     <td>` + data[key]['elemen_penilaian'] + `</td>
                     <td>` + data[key]['ep'] + `</td>
-                    <td><input type="hidden" class="nilai_akreditasi" id="nilai_value_` + key + `" value="` + data[key]['nilai_ep'] + `">` + nilai + `</td>
+                    <td><input type="hidden" id="nilai_value_`+ key +`" value="`+ data[key]['nilai_ep'] +`">` + nilai + `</td>
                     <td><span><button onclick="getDocument('` + data[key]['ep'] + `','` + data[key]['uid'] + `')" class="btn btn-success" data-toggle="modal" data-target="#modalDocument_` + key + `"> <i class="fas fa-folder"></i> <span style="display:none;">` + key + `</span></button><button onclick="getCatatan('` + data[key]['uid'] + `')" class="btn btn-primary" data-toggle="modal" data-target="#modalCatatan_` + key + `"> <i class="fas fa-comment-dots"></i> <span style="display:none;">` + key + `</span></button></span></td>
                     </tr>
                     `)
@@ -215,20 +214,6 @@
                     </div>`)
                 })
 
-                var nilai = $('.nilai_akreditasi').length
-
-                var sum = 0;
-                $('.nilai_akreditasi').each(function() {
-                    sum += parseFloat(this.value);
-                });
-
-                var presentasi = (sum / nilai) * nilai
-
-                $('#total_nilai').text(sum +"/" + (nilai * 10))
-                $('#persentasi_nilai').text(presentasi+"%")
-
-
-
                 var seen = {};
                 $('#tableNilai td').each(function() {
                     var index = $(this).index();
@@ -244,7 +229,6 @@
 
             }
         })
-
 
     })
 
@@ -314,8 +298,4 @@
             }
         })
     }
-
-    $(document).ready(function() {
-
-    })
 </script>

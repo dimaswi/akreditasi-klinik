@@ -25,7 +25,7 @@
                     <tfoot id="footerNilai" style="background-color: #f6ff00;">
                         <th colspan="3">Total Nilai</th>
                         <th><button class="btn btn-success" id="total_nilai" disabled></button></th>
-                        <th><button class="btn btn-success" id="persentasi_nilai" disabled></button></th>
+                        <th><button class="btn btn-success" id="persentasi_nilai" disabled>100%</button></th>
                     </tfoot>
                 </table>
                 <div class="row">
@@ -216,16 +216,14 @@
                 })
 
                 var nilai = $('.nilai_akreditasi').length
+                alert(nilai)
 
                 var sum = 0;
                 $('.nilai_akreditasi').each(function() {
                     sum += parseFloat(this.value);
                 });
 
-                var presentasi = (sum / nilai) * nilai
-
-                $('#total_nilai').text(sum +"/" + (nilai * 10))
-                $('#persentasi_nilai').text(presentasi+"%")
+                $('#total_nilai').text("/" + (nilai * 10))
 
 
 

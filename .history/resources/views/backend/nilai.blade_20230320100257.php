@@ -222,7 +222,8 @@
                     sum += parseFloat(this.value);
                 });
 
-                var presentasi = (sum / nilai) * nilai
+                var presentasi = (sum / nilai) * 100
+                alert(presentasi)
 
                 $('#total_nilai').text(sum +"/" + (nilai * 10))
                 $('#persentasi_nilai').text(presentasi+"%")

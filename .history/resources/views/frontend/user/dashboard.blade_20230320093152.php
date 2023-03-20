@@ -13,7 +13,7 @@
                 <span class="float-right">
                     @can('view backend')
                     <a href="{{ route('admin.dashboard')}}" class="btn btn-danger btn-lg">
-                        <i class="fas fa-user-secret"></i> Admin
+                        <i class="fas fa-user-secret"></i> Dashboard
                     </a>
                     @endcan
                 </span>

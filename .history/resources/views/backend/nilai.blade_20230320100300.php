@@ -223,6 +223,7 @@
                 });
 
                 var presentasi = (sum / nilai) * nilai
+                alert(presentasi)
 
                 $('#total_nilai').text(sum +"/" + (nilai * 10))
                 $('#persentasi_nilai').text(presentasi+"%")
