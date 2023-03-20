@@ -12,7 +12,7 @@ class CatatanController extends Controller
     public function getCatatan()
     {
         $ep = $_GET['ep'];
-        $catatan = DB::table('catatan')->where('ep', $ep)->get();
+        $catatan = DB::table('messages')->where('ep', $ep)->get();
 
         return $catatan;
 
@@ -21,10 +21,9 @@ class CatatanController extends Controller
     public function postCatatan(Request $request)
     {
         $catatan = new Catatan();
-        $catatan->bab = $request->bab;
-        $catatan->standart = $request->standart;
-        $catatan->ep = $request->ep;
-        $catatan->catatan = $request->catatan;
+        $catatan->ep = $_GET['ep'];
+        $catatan->user_id = $_GET['user_id'];
+        $catatan->message = $_GET['message'];
         $catatan->save();
 
         return "Berhasil Disimpan!!";

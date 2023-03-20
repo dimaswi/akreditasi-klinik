@@ -21,7 +21,7 @@ class UploadController extends Controller
     {
         $bab = $_GET['bab'];
 
-        $EP = DB::table('ep')->where('bab',$bab)->select('elemen_penilaian')->orderBy('elemen_penilaian')->get();
+        $EP = DB::table('ep')->where('bab',$bab)->select('elemen_penilaian')->orderBy('created_at', 'ASC')->get();
 
         return $EP;
     }
@@ -36,12 +36,22 @@ class UploadController extends Controller
         return $data;
     }
 
+    public function ajaxUID(Request $request)
+    {
+        $ep = $_GET['ep'];
+
+        $data = DB::table('elemen_penilaian')->where('ep', $ep)->select('uid')->orderBy('uid')->get();
+
+        return $data;
+    }
+
     public function simpanDokumen(Request $request)
     {
         $this->validate($request, [
             'bab' => 'required',
             'ep' => 'required',
         ]);
+
 
         $files = [];
         if ($request->hasFile('filenames')) {
@@ -51,6 +61,7 @@ class UploadController extends Controller
                 // $files[] = $name;
                 $file = new Dokumen();
                 $file->bab = $request->bab;
+                $file->uid = $request->uid;
                 $file->elemen_penilaian = $request->ep;
                 $file->ep = $request->elemen;
                 $file->filenames = $name;

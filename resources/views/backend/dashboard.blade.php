@@ -14,7 +14,7 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <strong>SISMADAK</strong>
+                <strong>SIMAKMU</strong>
             </div><!--card-header-->
             <div class="card-body">
                 @csrf

@@ -21,6 +21,14 @@ class NilaiController extends Controller
         return $data;
     }
 
+    public function getMsg()
+    {
+        $data = DB::table('elemen_penilaian')
+                ->join('messages','elemen_penilaian.uid','=','messages.ep')->get();
+
+        return $data;
+    }
+
     public function getDocument()
     {
         $ep = $_GET['ep'];
@@ -31,4 +39,5 @@ class NilaiController extends Controller
 
         return $data;
     }
+
 }

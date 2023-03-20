@@ -92,6 +92,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="uid" id="uid_ep">
 
                             <br>
 
@@ -166,9 +167,6 @@
         var ep = $('#ep').val()
         $("#elemen option").remove();
 
-        console.log(bab)
-        console.log(ep)
-
         $.ajax({
             type: "GET",
             url: "{{ route('admin.ajaxElemen') }}",
@@ -179,7 +177,6 @@
             },
             success: function(data) {
                 $("#elemen").append('<option value="" selected> Pilih Elemen Penilaian</option>');
-                console.log(data)
                 $.each(data,function(key, value)
                 {
                     $("#elemen").append('<option value="' + data[key]['ep'] + '">' + data[key]['ep'] + '</option>');
@@ -190,5 +187,29 @@
             }
         })
     })
+    
+    $('#elemen').on('change', function(e) {
+        e.preventDefault()
+        var ep = $('#elemen').val()
+        $.ajax({
+            type: "GET",
+            url: "{{ route('admin.ajaxUID') }}",
+            dataType: "JSON",
+            data: {
+                'ep': ep,
+            },
+            success: function(data) {
+                $.each(data,function(key, value)
+                {
+                    $("#uid_ep").val(data[key]['uid'])
+                });
+            },
+            error: function(err) {
+    
+            }
+        })
+    })
+
+          
 </script>
 @endsection
