@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Backend\DashboardController;
 
 /*
  * Global Routes

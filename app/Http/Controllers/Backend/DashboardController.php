@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Dokumen;
-use App\Http\Controllers\Controller;
-use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
 use Illuminate\Http\Request;
+use App\Models\Auth\Permission;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 /**
  * Class DashboardController.
@@ -19,7 +19,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if (!auth()->user()) {
+        if (! auth()->user()) {
             return redirect(route('frontend.user.dashboard'))->withFlashDanger('You are not authorized to view admin dashboard.');
         }
 
@@ -44,11 +44,11 @@ class DashboardController extends Controller
         $elemen = $_GET['ep'];
 
         $nilai = DB::table('dokumen_akreditasi')->where('ep', $elemen)->update([
-            'nilai' => $_GET['nilai']
+            'nilai' => $_GET['nilai'],
         ]);
 
         $nilai_ep = DB::table('elemen_penilaian')->where('ep', $elemen)->update([
-            'nilai_ep' => $_GET['nilai']
+            'nilai_ep' => $_GET['nilai'],
         ]);
 
         return $_GET['nilai'];
@@ -68,30 +68,28 @@ class DashboardController extends Controller
     public function dokumenTambahan(Request $request)
     {
         request()->validate([
-            'file'  => 'required|mimes:doc,docx,pdf,txt|max:2048',
-          ]);
-    
-           if ($files = $request->file('file')) {
-               
-               //store file into document folder
-               $file = $request->file->store('public/documents');
-   
-               //store your file into database
-               //$document = new Document();
-               //$document->title = $file;
-               //$document->save();
-                
-               return Response()->json([
-                   "success" => true,
-                   "file" => $file
-               ]);
-    
-           }
-    
-           return Response()->json([
-                   "success" => false,
-                   "file" => ''
-             ]);
+            'file' => 'required|mimes:doc,docx,pdf,txt|max:2048',
+        ]);
+
+        if ($files = $request->file('file')) {
+            //store file into document folder
+            $file = $request->file->store('public/documents');
+
+            //store your file into database
+            //$document = new Document();
+            //$document->title = $file;
+            //$document->save();
+
+            return Response()->json([
+                'success' => true,
+                'file' => $file,
+            ]);
+        }
+
+        return Response()->json([
+            'success' => false,
+            'file' => '',
+        ]);
     }
 
     /**

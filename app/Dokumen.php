@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Dokumen extends Model
 {
     protected $table = 'dokumen_akreditasi';
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
-        'bab', 
+        'bab',
         'elemen_penilaian',
         'ep',
         'filenames',
-        'jenis_dokumen'
+        'jenis_dokumen',
     ];
 }
