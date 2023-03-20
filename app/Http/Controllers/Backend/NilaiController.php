@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class NilaiController extends Controller
 {
     public function index()
     {
-
         return view('backend.nilai');
     }
 
@@ -24,7 +22,7 @@ class NilaiController extends Controller
     public function getMsg()
     {
         $data = DB::table('elemen_penilaian')
-                ->join('messages','elemen_penilaian.uid','=','messages.ep')->get();
+            ->join('messages', 'elemen_penilaian.uid', '=', 'messages.ep')->get();
 
         return $data;
     }
@@ -33,11 +31,10 @@ class NilaiController extends Controller
     {
         $ep = $_GET['ep'];
         $data = DB::table('elemen_penilaian')
-                ->join('dokumen_akreditasi','elemen_penilaian.ep','=','dokumen_akreditasi.ep')
-                ->where('dokumen_akreditasi.ep',$ep)
-                ->get();
+            ->join('dokumen_akreditasi', 'elemen_penilaian.ep', '=', 'dokumen_akreditasi.ep')
+            ->where('dokumen_akreditasi.ep', $ep)
+            ->get();
 
         return $data;
     }
-
 }

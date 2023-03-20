@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\BAB;
 use App\Dokumen;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class UploadController extends Controller
 {
@@ -21,7 +20,7 @@ class UploadController extends Controller
     {
         $bab = $_GET['bab'];
 
-        $EP = DB::table('ep')->where('bab',$bab)->select('elemen_penilaian')->orderBy('created_at', 'ASC')->get();
+        $EP = DB::table('ep')->where('bab', $bab)->select('elemen_penilaian')->orderBy('created_at', 'ASC')->get();
 
         return $EP;
     }
@@ -31,7 +30,7 @@ class UploadController extends Controller
         $bab = $_GET['bab'];
         $ep = $_GET['ep'];
 
-        $data = DB::table('elemen_penilaian')->where('bab',$bab)->where('elemen_penilaian', $ep)->select('ep')->orderBy('ep')->get();
+        $data = DB::table('elemen_penilaian')->where('bab', $bab)->where('elemen_penilaian', $ep)->select('ep')->orderBy('ep')->get();
 
         return $data;
     }
@@ -52,8 +51,8 @@ class UploadController extends Controller
             'ep' => 'required',
         ]);
 
-
         $files = [];
+
         if ($request->hasFile('filenames')) {
             foreach ($request->file('filenames') as $file) {
                 $name = $file->getClientOriginalName();

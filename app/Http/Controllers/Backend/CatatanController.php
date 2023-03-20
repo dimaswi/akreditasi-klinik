@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Catatan;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class CatatanController extends Controller
 {
@@ -15,7 +15,6 @@ class CatatanController extends Controller
         $catatan = DB::table('messages')->where('ep', $ep)->get();
 
         return $catatan;
-
     }
 
     public function postCatatan(Request $request)
@@ -26,6 +25,6 @@ class CatatanController extends Controller
         $catatan->message = $_GET['message'];
         $catatan->save();
 
-        return "Berhasil Disimpan!!";
+        return 'Berhasil Disimpan!!';
     }
 }

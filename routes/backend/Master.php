@@ -15,4 +15,3 @@ Route::any('editEP', 'MasterController@editEP')->name('editEP');
 Route::any('editStandar', 'MasterController@editStandar')->name('editStandar');
 Route::any('hapusBAB', 'MasterController@hapusBAB')->name('hapusBAB');
 Route::any('hapusStandart', 'MasterController@hapusStandart')->name('hapusStandart');
-

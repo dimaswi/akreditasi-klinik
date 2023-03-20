@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\EP;
 use App\BAB;
 use App\ElemenPenilaian;
-use App\EP;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class MasterController extends Controller
 {
@@ -17,6 +17,7 @@ class MasterController extends Controller
         $list_standar = DB::table('ep')->get();
         $list_ep = DB::table('elemen_penilaian')->get();
         $list_bab = DB::table('bab')->get();
+
         return view('backend.master', compact('bab', 'list_standar', 'list_ep', 'list_bab'));
     }
 
@@ -84,19 +85,19 @@ class MasterController extends Controller
         $input_bab = $_GET['input_bab'];
 
         $update = DB::table('bab')->where('id', $id)->update([
-            'BAB' => $input_bab
+            'BAB' => $input_bab,
         ]);
 
         $update_standart = DB::table('ep')->where('bab', $bab)->update([
-            'bab' => $input_bab
+            'bab' => $input_bab,
         ]);
 
         $update_ep = DB::table('elemen_penilaian')->where('bab', $bab)->update([
-            'bab' => $input_bab
+            'bab' => $input_bab,
         ]);
 
         $dokumentasi = DB::table('dokumen_akreditasi')->where('bab', $bab)->update([
-            'bab' => $input_bab
+            'bab' => $input_bab,
         ]);
 
         return $update;
@@ -109,15 +110,15 @@ class MasterController extends Controller
         $standar = $_GET['std'];
 
         $update = DB::table('ep')->where('id', $id)->update([
-            'elemen_penilaian' => $input_standar
+            'elemen_penilaian' => $input_standar,
         ]);
 
         $update_dokumen = DB::table('dokumen_akreditasi')->where('elemen_penilaian', $standar)->update([
-            'elemen_penilaian' => $input_standar
+            'elemen_penilaian' => $input_standar,
         ]);
 
         $update_ep = DB::table('elemen_penilaian')->where('elemen_penilaian', $standar)->update([
-            'elemen_penilaian' => $input_standar
+            'elemen_penilaian' => $input_standar,
         ]);
 
         return $update;
@@ -129,11 +130,11 @@ class MasterController extends Controller
         $input_ep = $_GET['ep'];
 
         $update = DB::table('elemen_penilaian')->where('uid', $uid)->update([
-            'ep' => $input_ep
+            'ep' => $input_ep,
         ]);
 
         $update = DB::table('dokumen_akreditasi')->where('uid', $uid)->update([
-            'ep' => $input_ep
+            'ep' => $input_ep,
         ]);
 
         return $update;
